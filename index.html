@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贪吃蛇 - Snake Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <!-- Header -->
+  <header id="header">
+    <h1 class="game-title">🐍 贪吃蛇</h1>
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-label">分数</span>
+        <span class="stat-value" id="score">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">最高分</span>
+        <span class="stat-value" id="high-score">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">等级</span>
+        <span class="stat-value" id="level">1</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">长度</span>
+        <span class="stat-value" id="length">3</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Game Area -->
+  <main id="game-container">
+    <!-- Canvas -->
+    <canvas id="game-canvas"></canvas>
+
+    <!-- Overlay for game states -->
+    <div id="overlay" class="overlay active">
+      <div class="overlay-content">
+        <h2 id="overlay-title">🐍 贪吃蛇</h2>
+        <p id="overlay-subtitle">经典街机游戏</p>
+        <div id="overlay-body"></div>
+        <button id="overlay-btn" class="btn btn-primary">开始游戏</button>
+      </div>
+    </div>
+
+    <!-- Pause indicator -->
+    <div id="pause-indicator" class="pause-indicator hidden">
+      <span>⏸ 暂停</span>
+    </div>
+  </main>
+
+  <!-- Controls Panel -->
+  <aside id="controls-panel">
+    <div class="panel-section">
+      <h3>🎮 操作</h3>
+      <div class="control-list">
+        <div class="control-row"><kbd>↑↓←→</kbd> / <kbd>WASD</kbd> 移动</div>
+        <div class="control-row"><kbd>Space</kbd> 暂停</div>
+        <div class="control-row"><kbd>R</kbd> 重新开始</div>
+        <div class="control-row"><kbd>M</kbd> 静音</div>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <h3>🎨 皮肤</h3>
+      <div class="skin-grid" id="skin-grid">
+        <button class="skin-btn active" data-skin="classic">经典</button>
+        <button class="skin-btn" data-skin="neon">霓虹</button>
+        <button class="skin-btn" data-skin="forest">森林</button>
+        <button class="skin-btn" data-skin="sunset">日落</button>
+        <button class="skin-btn" data-skin="ocean">海洋</button>
+        <button class="skin-btn" data-skin="candy">糖果</button>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <h3>🍎 食物</h3>
+      <div class="control-list">
+        <div class="control-row">🍎 苹果 (+10)</div>
+        <div class="control-row">⭐ 星星 (+20)</div>
+        <div class="control-row">🍇 葡萄 (+30)</div>
+        <div class="control-row">💎 钻石 (+50)</div>
+        <div class="control-row">🌈 彩虹 (+100)</div>
+      </div>
+    </div>
+
+    <div class="panel-section">
+      <h3>⚙️ 设置</h3>
+      <div class="setting-row">
+        <label for="speed-select">速度</label>
+        <select id="speed-select">
+          <option value="slow">慢速</option>
+          <option value="normal" selected>正常</option>
+          <option value="fast">快速</option>
+          <option value="insane">疯狂</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <label for="grid-size-select">网格大小</label>
+        <select id="grid-size-select">
+          <option value="15">小 (15×15)</option>
+          <option value="20" selected>中 (20×20)</option>
+          <option value="30">大 (30×30)</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <label>
+          <input type="checkbox" id="wall-walk-toggle"> 穿墙模式
+        </label>
+      </div>
+      <div class="setting-row">
+        <label>
+          <input type="checkbox" id="sound-toggle" checked> 音效
+        </label>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile D-Pad -->
+  <div id="dpad" class="dpad hidden">
+    <button class="dpad-btn" data-dir="up">▲</button>
+    <button class="dpad-btn" data-dir="left">◄</button>
+    <button class="dpad-btn" data-dir="down">▼</button>
+    <button class="dpad-btn" data-dir="right">►</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
